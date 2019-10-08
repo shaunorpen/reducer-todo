@@ -1,51 +1,88 @@
 import React, { useReducer } from 'react';
+import uuid from 'uuid';
 
 import AddTodo from './components/AddTodo';
-import Search from './components/Search';
+import ClearCompleted from './components/ClearCompleted';
 import TodoList from './components/TodoList';
 
-const initialState = [
-  {
-    id: 1,
-    description: 'Learn HTML',
-    isComplete: true
-  },
-  {
-    id: 2,
-    description: 'Learn CSS',
-    isComplete: false
-  },
-  {
-    id: 3,
-    description: 'Learn JavaScript',
-    isComplete: false
-  },
-]
+const initialState = {
+  todos: [
+    {
+      id: uuid(),
+      description: 'Learn HTML',
+      isComplete: true
+    },
+    {
+      id: uuid(),
+      description: 'Learn CSS',
+      isComplete: false
+    },
+    {
+      id: uuid(),
+      description: 'Learn JavaScript',
+      isComplete: false
+    },
+  ],
+  taskDescription: '',
+}
 
-const ADD_TASK = 'ADD_TASK';
+const ADD_TODO = 'ADD_TODO';
+const CLEAR_COMPLETED_TASKS = 'CLEAR_COMPLETED_TASKS';
+const UPDATE_TASK_DESCRIPTION = 'UPDATE_TASK_DESCRIPTION';
 const TOGGLE_COMPLETE = 'TOGGLE_COMPLETE';
-const FIND_TASK = 'FIND_TASK';
 
 function reducer(state, action) {
   switch (action.type) {
-    case ADD_TASK:
-      return state;
+    case UPDATE_TASK_DESCRIPTION:
+      return {
+        ...state,
+        taskDescription: action.payload
+      };
+    case ADD_TODO:
+      return {
+        todos: [...state.todos, { id: uuid(), description: state.taskDescription, isComplete: false } ],
+        taskDescription: '',
+      };
+    case CLEAR_COMPLETED_TASKS:
+      return { 
+        ...state,
+        todos: state.todos.filter(todo => todo.isComplete === false),
+      };
     case TOGGLE_COMPLETE:
-      return state;
+        return { 
+          ...state,
+          todos: state.todos.map(todo => {
+            return todo.id === action.payload.id 
+              ? {...todo, isComplete: !todo.isComplete}
+              : todo
+          })
+        };
     default:
       return state;
   }
 }
 
 function App() {
-  const [todos, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   return (
     <div className="App">
       <h1>Todo App</h1>
-      <Search />
-      <TodoList todos={todos} />
-      <AddTodo />
+      <TodoList 
+        todos={state.todos}
+        dispatch={dispatch}
+        TOGGLE_COMPLETE={TOGGLE_COMPLETE} 
+      />
+      <AddTodo 
+        taskDescription={state.taskDescription} 
+        dispatch={dispatch} 
+        ADD_TODO={ADD_TODO} 
+        UPDATE_TASK_DESCRIPTION={UPDATE_TASK_DESCRIPTION} 
+      />
+      <ClearCompleted
+        dispatch={dispatch} 
+        CLEAR_COMPLETED_TASKS={CLEAR_COMPLETED_TASKS}
+      />
     </div>
   );
 }
