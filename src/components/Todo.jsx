@@ -1,7 +1,10 @@
 import React from 'react';
 
-export default function Todo() {
+export default function Todo(props) {
     return (
-        <div>Todo</div>
+        <div>
+            <input type='checkbox' value={props.id.toString()}  checked={props.isComplete} />
+            <span>{props.description}</span>
+        </div>
     );
 }

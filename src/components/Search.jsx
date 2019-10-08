@@ -2,6 +2,9 @@ import React from 'react';
 
 export default function Search() {
     return (
-        <div>function Search</div>
+        <div>
+            <input id='search-tasks' placeholder='Find task' />
+            <button>Find Todo</button>
+        </div>
     );
 }
