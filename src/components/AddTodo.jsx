@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function AddTodo({ taskDescription, UPDATE_TASK_DESCRIPTION, dispatch, ADD_TODO }) {
     return (
-        <div>
+        <div id='add-todo'>
             <input 
                 id='new-todo' 
                 placeholder='New task...' 
