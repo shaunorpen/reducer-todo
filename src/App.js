@@ -10,17 +10,20 @@ const initialState = {
     {
       id: uuid(),
       description: 'Learn HTML',
-      isComplete: true
+      isComplete: true,
+      completedDate: '',
     },
     {
       id: uuid(),
       description: 'Learn CSS',
-      isComplete: false
+      isComplete: false,
+      completedDate: '',
     },
     {
       id: uuid(),
       description: 'Learn JavaScript',
-      isComplete: false
+      isComplete: false,
+      completedDate: '',
     },
   ],
   taskDescription: '',
@@ -40,7 +43,11 @@ function reducer(state, action) {
       };
     case ADD_TODO:
       return {
-        todos: [...state.todos, { id: uuid(), description: state.taskDescription, isComplete: false } ],
+        todos: [...state.todos, { 
+          id: uuid(), 
+          description: state.taskDescription, 
+          isComplete: false, 
+          completedDate: '' } ],
         taskDescription: '',
       };
     case CLEAR_COMPLETED_TASKS:
@@ -53,7 +60,10 @@ function reducer(state, action) {
           ...state,
           todos: state.todos.map(todo => {
             return todo.id === action.payload.id 
-              ? {...todo, isComplete: !todo.isComplete}
+              ? {...todo, 
+                  isComplete: !todo.isComplete, 
+                  completedDate: todo.isComplete ? '' : Date.now() 
+                }
               : todo
           })
         };
