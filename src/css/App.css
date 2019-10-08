@@ -1,0 +1,50 @@
+:root {
+    font-size: 62.5%;
+    box-sizing: border-box;
+}
+
+.App {
+    font-size: 1.5rem;
+    max-width: 800px;
+    margin: 20px auto;
+    box-shadow: 0 0 10px grey;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+}
+
+#add-todo {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+}
+
+#clear-completed-tasks {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+}
+
+button, input {
+    font-size: inherit;
+    border-radius: 5px;
+    border: 1px solid grey;
+    margin: 0 10px;
+}
+
+.todo {
+    margin: 10px 50px;
+    display: flex;
+}
+
+.todo span:first-of-type {
+    font-weight: bold;
+}
+
+.todo span:last-of-type {
+    color: grey;
+    font-size: 1.2rem;
+    margin-left: 10px;
+}
