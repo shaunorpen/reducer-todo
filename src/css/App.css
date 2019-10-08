@@ -33,3 +33,18 @@ button, input {
     border: 1px solid grey;
     margin: 0 10px;
 }
+
+.todo {
+    margin: 10px 50px;
+    display: flex;
+}
+
+.todo span:first-of-type {
+    font-weight: bold;
+}
+
+.todo span:last-of-type {
+    color: grey;
+    font-size: 1.2rem;
+    margin-left: 10px;
+}
