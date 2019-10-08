@@ -6,7 +6,7 @@ const initialState = {
         id: uuid(),
         description: 'Learn HTML',
         isComplete: true,
-        completedDate: '',
+        completedDate: 'Tuesday, October 8th 2019, 3:20:58 pm',
       },
       {
         id: uuid(),
