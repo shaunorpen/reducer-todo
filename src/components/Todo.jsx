@@ -9,7 +9,7 @@ export default function Todo(props) {
                 defaultChecked={props.isComplete}
                 onClick={() => props.dispatch({ type: props.TOGGLE_COMPLETE, payload: { id: props.id } })} />
             <span>{props.description}</span>
-            <span>{props.completedDate}</span>
+            <span>{props.completedDate ? ' - Completed ' + props.completedDate: null}</span>
         </div>
     );
 }

@@ -1,5 +1,6 @@
 import React, { useReducer } from 'react';
 import uuid from 'uuid';
+import moment from 'moment';
 
 import AddTodo from './components/AddTodo';
 import ClearCompleted from './components/ClearCompleted';
@@ -62,7 +63,7 @@ function reducer(state, action) {
             return todo.id === action.payload.id 
               ? {...todo, 
                   isComplete: !todo.isComplete, 
-                  completedDate: todo.isComplete ? '' : Date.now() 
+                  completedDate: todo.isComplete ? '' : moment().format("dddd, MMMM Do YYYY, h:mm:ss a")
                 }
               : todo
           })
