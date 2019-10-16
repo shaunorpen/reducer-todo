@@ -13,7 +13,9 @@ export default function AddTodo({ taskDescription, UPDATE_TASK_DESCRIPTION, disp
                         payload: evt.target.value 
                     })
                 }} />
-            <button onClick={evt => dispatch({ type: ADD_TODO })} >Add Todo</button>
+            <button onClick={evt => taskDescription 
+                ? dispatch({ type: ADD_TODO }) 
+                : alert('Please input a task description')} >Add Todo</button>
         </div>
     );
 }
